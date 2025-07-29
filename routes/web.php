@@ -7,7 +7,7 @@ use App\Http\Controllers\auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.sign-in');
 });
 
 // Authentication User
