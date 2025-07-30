@@ -8,20 +8,22 @@
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
-                                <a href="index.html"><img src="{{ asset('images/logo-full.png') }}" alt=""></a>
+                                <a href="#"><img src="{{ asset('images/logo-full.png') }}" alt=""></a>
                             </div>
                             <h4 class="text-center mb-4">Reset Password</h4>
-                            <form action="index.html">
+                            <form action="{{ route('reset-password', $email) }}">
+                                @csrf
                                 <div class="mb-3">
                                     <label><strong>New Password</strong></label>
-                                    <input type="password" class="form-control" value="Password">
+                                    <input type="password" class="form-control" value="Password" name="password">
                                 </div>
                                 <div class="mb-3">
                                     <label><strong>Confirm Password</strong></label>
-                                    <input type="password" class="form-control" value="Password">
+                                    <input type="password" class="form-control" value="Password"
+                                        name="password_confirmation">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
                                 </div>
                             </form>
                         </div>

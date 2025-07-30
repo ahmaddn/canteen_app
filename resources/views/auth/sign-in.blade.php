@@ -8,23 +8,40 @@
                     <div class="col-xl-12">
                         <div class="auth-form">
                             <div class="text-center mb-3">
-                                <a href="index.html"><img src="{{ asset('images/logo-full.png') }}" alt=""></a>
+                                <a href="#"><img src="{{ asset('images/logo-full.png') }}" alt=""></a>
                             </div>
                             <h4 class="text-center mb-4">Sign in your account</h4>
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    {{ session('success') }}
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                        aria-label="btn-close"></button>
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    {{ session('error') }}
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                        aria-label="btn-close"></button>
+                                </div>
+                            @endif
                             <form action="{{ route('login') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="mb-1"><strong>Email</strong></label>
-                                    <input type="email" name="email" class="form-control" value="hello@example.com">
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ Cookie::get('remember_email') ?? old('email') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="mb-1"><strong>Password</strong></label>
-                                    <input type="password" name="password" class="form-control" value="Password">
+                                    <input type="password" name="password" class="form-control"
+                                        value="{{ Cookie::get('remember_password') ?? old('password') }}">
                                 </div>
                                 <div class="row d-flex justify-content-between mt-4 mb-2">
                                     <div class="mb-3">
                                         <div class="form-check custom-checkbox ms-1">
-                                            <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
+                                            <input type="checkbox" class="form-check-input" id="basic_checkbox_1"
+                                                name="remember_me">
                                             <label class="form-check-label" for="basic_checkbox_1">Remember my
                                                 preference</label>
                                         </div>

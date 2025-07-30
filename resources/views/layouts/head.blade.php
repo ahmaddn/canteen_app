@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -18,8 +16,10 @@
     <title>Admin Dashboard</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor/nouislider/nouislider.min.css') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 

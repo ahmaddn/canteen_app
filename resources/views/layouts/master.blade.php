@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
 @include('layouts.head')
 
 <body class="vh-100">
@@ -7,3 +10,6 @@
         </div>
     </div>
     @include('layouts.script')
+</body>
+
+</html>
