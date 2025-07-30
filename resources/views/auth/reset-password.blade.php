@@ -11,7 +11,7 @@
                                 <a href="#"><img src="{{ asset('images/logo-full.png') }}" alt=""></a>
                             </div>
                             <h4 class="text-center mb-4">Reset Password</h4>
-                            <form action="{{ route('reset-password', $email) }}">
+                            <form action="{{ route('reset-password', $email) }}" method="post">
                                 @csrf
                                 <div class="mb-3">
                                     <label><strong>New Password</strong></label>
