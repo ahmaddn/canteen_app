@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->integer('stock');
+            $table->string('image');
             $table->boolean('is_available')->default(true);
             $table->date('expired_at');
             $table->timestamps();

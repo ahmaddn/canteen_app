@@ -1,10 +1,24 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a href="javascript:void()" aria-expanded="false">
+            <li><a href="{{ route('dashboard') }}" class="" aria-expanded="false">
                     <i class="fas fa-home"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
+            </li>
+            <li><a href="{{ route('categories.index') }}" class="" aria-expanded="false">
+                    <i class="fa fa-folder"></i>
+                    <span class="nav-text">Categories</span>
+                </a>
+            </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="nav-text">Products</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('products.add') }}">Add</a></li>
+                </ul>
+
             </li>
         </ul>
         <div class="copyright">

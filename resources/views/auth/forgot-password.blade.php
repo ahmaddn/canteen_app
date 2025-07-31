@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block">Forgot Password</button>
+                                    <a class="btn btn-secondary btn-block mt-3" href="{{ url('/') }}">Back</a>
                                 </div>
                             </form>
                         </div>
