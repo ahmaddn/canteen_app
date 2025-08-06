@@ -9,5 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Categories extends Model
 {
     use SoftDeletes, HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

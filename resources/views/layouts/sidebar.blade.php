@@ -16,9 +16,9 @@
                     <span class="nav-text">Products</span>
                 </a>
                 <ul aria-expanded="false">
+                    <li><a href="{{ route('products.index') }}">Index</a></li>
                     <li><a href="{{ route('products.add') }}">Add</a></li>
                 </ul>
-
             </li>
         </ul>
         <div class="copyright">

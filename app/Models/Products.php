@@ -13,7 +13,18 @@ class Products extends Model
         'name',
         'price',
         'stock',
+        'description',
         'is_available',
         'expired_at',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class, 'category_id');
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachments::class);
+    }
 }

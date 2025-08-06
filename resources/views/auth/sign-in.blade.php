@@ -12,14 +12,14 @@
                             </div>
                             <h4 class="text-center mb-4">Sign in your account</h4>
                             @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show">
+                                <div class="alert alert-success solid alert-dismissible fade show">
                                     {{ session('success') }}
                                     <button class="btn-close" type="button" data-bs-dismiss="alert"
                                         aria-label="btn-close"></button>
                                 </div>
                             @endif
                             @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show">
+                                <div class="alert alert-danger solid alert-dismissible fade show">
                                     {{ session('error') }}
                                     <button class="btn-close" type="button" data-bs-dismiss="alert"
                                         aria-label="btn-close"></button>
