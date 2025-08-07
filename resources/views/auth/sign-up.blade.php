@@ -38,6 +38,13 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <label class="mb-1"><strong>Class</strong></label>
+                                    <input type="password" name="class" class="form-control" value="{{ old('class') }}">
+                                    @error('class')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
                                     <label class="mb-1"><strong>Birthday</strong></label>
                                     <input type="date" class="form-control" name="birthday"
                                         value="{{ old('birthday') }}">
