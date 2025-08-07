@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="mb-1"><strong>Class</strong></label>
-                                    <input type="password" name="class" class="form-control" value="{{ old('class') }}">
+                                    <input type="text" name="class" class="form-control" value="{{ old('class') }}">
                                     @error('class')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
