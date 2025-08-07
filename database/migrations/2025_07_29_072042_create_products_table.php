@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->string('sku')->unique();
+            $table->string('brand')->nullable();
             $table->string('name');
             $table->integer('price');
             $table->integer('stock');

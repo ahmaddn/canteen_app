@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Product</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Add</a></li>
             </ol>
         </div>
 
@@ -45,8 +45,15 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">SKU</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="SKU" name="sku"
-                                            value="{{ old('sku') }}">
+                                        <input type="text" class="form-control" placeholder="AAAA - 0000" name="sku"
+                                            id="sku-num" value="{{ old('sku') }}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Brand</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" placeholder="Brand" name="brand"
+                                            value="{{ old('brand') }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -87,9 +94,6 @@
                                     <div class="col-sm-9">
                                         <input type="date" class="form-control" name="expired_at"
                                             value="{{ old('expired_at') }}">
-                                        @error('expired_at')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -99,9 +103,6 @@
                                             <div class="form-file">
                                                 <input type="file" class="form-file-input form-control"
                                                     name="attachments[]" multiple>
-                                                @error('expired_at')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>

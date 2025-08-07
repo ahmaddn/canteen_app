@@ -13,8 +13,10 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        // Logic to retrieve products can be added here
-        return view("products.index");
+        $products = Products::where('user_id', Auth::id())
+            ->with('category')
+            ->get();
+        return view("products.index", compact("products"));
     }
     public function add()
     {
@@ -26,6 +28,7 @@ class ProductsController extends Controller
     {
         $request->validate([
             'sku' => 'required|string|max:50',
+            'brand' => 'nullable|string|max:100',
             'name' => 'required|string|max:100',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
@@ -42,6 +45,7 @@ class ProductsController extends Controller
                 'user_id' => Auth::id(),
                 'category_id' => $request->category_id,
                 'sku' => $request->sku,
+                'brand' => $request->brand,
                 'name' => $request->name,
                 'price' => $request->price,
                 'stock' => $request->stock,
@@ -66,5 +70,12 @@ class ProductsController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => 'Failed to add product: ' . $th->getMessage()])->withInput();
         }
+    }
+
+    public function destroy($id)
+    {
+        $product = Products::findOrFail($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product Deleted Successfully!');
     }
 }

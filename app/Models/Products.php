@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Products extends Model
 {
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'category_id',
         'user_id',
         'sku',
+        'brand',
         'name',
         'price',
         'stock',
@@ -25,6 +29,6 @@ class Products extends Model
 
     public function attachments()
     {
-        return $this->hasMany(Attachments::class);
+        return $this->hasMany(Attachments::class, 'product_id');
     }
 }

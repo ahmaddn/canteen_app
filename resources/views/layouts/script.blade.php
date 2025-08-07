@@ -1,6 +1,9 @@
 <script src="{{ asset('vendor/global/global.min.js') }}"></script>
 <script src="{{ asset('vendor/chart.js/Chart.bundle.min.js') }}"></script>
 
+<script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/plugins-init/datatables.init.js') }}"></script>
+
 <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('vendor/apexchart/apexchart.js') }}"></script>
 
@@ -16,6 +19,22 @@
 <script src="{{ asset('js/dlabnav-init.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
 <script src="{{ asset('js/styleSwitcher.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#sku-num').mask('AAAA - 0000', {
+            translation: {
+                'A': {
+                    pattern: /[A-Za-z]/
+                },
+            }
+        });
+
+        $('#sku-num').on('input', function() {
+            this.value = this.value.toUpperCase();
+        })
+    });
+</script>
 <script>
     function cardsCenter() {
 
