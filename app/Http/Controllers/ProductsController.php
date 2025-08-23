@@ -18,6 +18,14 @@ class ProductsController extends Controller
             ->get();
         return view("products.index", compact("products"));
     }
+
+    public function dashboard()
+    {
+        $products = Products::with('attachments')->get();
+
+        return view('dashboard', compact('products'));
+    }
+
     public function add()
     {
         $categories = Categories::where('user_id', Auth::id())->get();

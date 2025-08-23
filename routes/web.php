@@ -26,9 +26,7 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->midd
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->middleware('guest')->name('forgot-submit');
 
 // Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [ProductsController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     // Categories
