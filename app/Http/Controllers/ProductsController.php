@@ -41,10 +41,8 @@ class ProductsController extends Controller
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'desc' => 'nullable|string|max:500',
-            'is_available' => '|boolean',
             'expired_at' => 'required|date',
-            'attachments' => 'required|array',
-            'attachments.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'attachments' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
         DB::beginTransaction();
         try {
@@ -62,14 +60,13 @@ class ProductsController extends Controller
             ]);
 
             if ($request->hasFile('attachments')) {
-                foreach ($request->file('attachments') as $file) {
-                    $path = $file->store('attachments', 'public');
+                $file = $request->attachments;
+                $path = $file->store('attachments', 'public');
 
-                    Attachments::create([
-                        'product_id' => $product->id,
-                        'name_img' => $path,
-                    ]);
-                }
+                Attachments::create([
+                    'product_id' => $product->id,
+                    'name_img' => $path,
+                ]);
             }
 
             DB::commit();
@@ -77,6 +74,57 @@ class ProductsController extends Controller
         } catch (\Exception $th) {
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => 'Failed to add product: ' . $th->getMessage()])->withInput();
+        }
+    }
+
+    public function edit($id)
+    {
+        $product = Products::findOrFail($id);
+        $categories = Categories::all();
+        return view('products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Products::findOrFail($id);
+
+        $request->validate([
+            'sku' => 'required|string|max:50',
+            'brand' => 'nullable|string|max:100',
+            'name' => 'required|string|max:100',
+            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'desc' => 'nullable|string|max:500',
+            'expired_at' => 'required|date',
+            'attachments' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+        try {
+
+            $product->update([
+                'sku' => $request->sku,
+                'brand' => $request->brand,
+                'name' => $request->name,
+                'price' => $request->price,
+                'category_id' => $request->category_id,
+                'description' => $request->desc ?? null,
+                'expired_at' => $request->expired_at,
+                'attachments' => $request->attachments,
+            ]);
+
+            if ($request->hasFile('attachments')) {
+                $file = $request->attachments;
+                $path = $file->store('attachments', 'public');
+
+                $attachment = Attachments::findOrFail($product->id);
+                $attachment->update([
+                    'name_img' => $path
+                ]);
+            }
+
+            return redirect()->route('products.index')->with('success', 'Product Updated Successfully!');
+        } catch (\Exception $th) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => 'Failed to edit product: ' . $th->getMessage()])->withInput();
         }
     }
 

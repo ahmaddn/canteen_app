@@ -23,13 +23,6 @@
                                 </div>
                                 <div class="new-arrival-content text-center mt-3">
                                     <h4><a href="#">{{ $prod->name }}</a></h4>
-                                    <ul class="star-rating">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                    </ul>
                                     <span class="price">Rp. {{ $prod->price }}</span>
                                 </div>
                             </div>

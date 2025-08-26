@@ -102,7 +102,7 @@
                                         <div class="input-group">
                                             <div class="form-file">
                                                 <input type="file" class="form-file-input form-control"
-                                                    name="attachments[]" multiple>
+                                                    name="attachments">
                                             </div>
                                         </div>
                                     </div>

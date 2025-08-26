@@ -46,7 +46,8 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                    <a href="{{ route('products.edit', $product->id) }}"
+                                                        class="btn btn-primary shadow btn-xs sharp me-1"><i
                                                             class="fas fa-pencil-alt"></i></a>
                                                     <button type="button" class="btn btn-danger shadow btn-xs sharp"
                                                         data-bs-toggle="modal" data-bs-target="#modalDeleteProducts"><i
