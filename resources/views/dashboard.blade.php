@@ -15,16 +15,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="new-arrival-product">
-                                <div class="new-arrivals-img-contnent">
-                                    <img class="img-fluid"
-                                        src="{{ asset('storage/' . $prod->attachments->first()->name_img) }}"
-                                        alt="">
+                                <a href="{{ route('products.detail', $prod->id) }}">
+                                    <div class="new-arrivals-img-contnent">
+                                        <img class="img-fluid"
+                                            src="{{ asset('storage/' . $prod->attachments->first()->name_img) }}"
+                                            alt="">
 
-                                </div>
-                                <div class="new-arrival-content text-center mt-3">
-                                    <h4><a href="#">{{ $prod->name }}</a></h4>
-                                    <span class="price">Rp. {{ $prod->price }}</span>
-                                </div>
+                                    </div>
+                                    <div class="new-arrival-content text-center mt-3">
+                                        <h4>{{ $prod->name }}</h4>
+                                        <span class="price">Rp. {{ $prod->price }}</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -16,6 +16,7 @@
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/star-rating/star-rating-svg.css') }}">
     <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">

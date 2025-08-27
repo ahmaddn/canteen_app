@@ -1,4 +1,5 @@
 <script src="{{ asset('vendor/global/global.min.js') }}"></script>
+<script src="{{ asset('vendor/star-rating/jquery.star-rating-svg.js') }}"></script>
 <script src="{{ asset('vendor/chart.js/Chart.bundle.min.js') }}"></script>
 
 <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>

@@ -8,6 +8,7 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -112,6 +113,11 @@ class ProductsController extends Controller
             ]);
 
             if ($request->hasFile('attachments')) {
+                $attachment = Attachments::findOrFail($product->id);
+
+                if ($attachment) {
+                    Storage::disk('public')->delete($attachment->name_img);
+                }
                 $file = $request->attachments;
                 $path = $file->store('attachments', 'public');
 
@@ -133,5 +139,11 @@ class ProductsController extends Controller
         $product = Products::findOrFail($id);
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product Deleted Successfully!');
+    }
+
+    public function detail($id)
+    {
+        $product = Products::with('category', 'attachments')->findOrFail($id);
+        return view('products.detail', compact('product'));
     }
 }
