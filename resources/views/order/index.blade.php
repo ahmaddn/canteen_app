@@ -3,64 +3,47 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Categories</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Index</a></li>
             </ol>
         </div>
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-xl-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Table Categories</h4>
-                        <a class="btn btn-primary" href="{{ route('categories.add') }}">Add Categories</a>
+                        <h4 class="card-title">Products</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-responsive-md">
+                            <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th style="width:50px;">
-                                            <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                <input type="checkbox" class="form-check-input" id="checkAll"
-                                                    required="">
-                                                <label class="form-check-label" for="checkAll"></label>
-                                            </div>
-                                        </th>
-                                        <th><strong>NO.</strong></th>
-                                        <th><strong>NAME</strong></th>
-                                        <th><strong>CREATED_AT</strong></th>
-                                        <th><strong>UPDATED_AT</strong></th>
-                                        <th><strong></strong></th>
+                                        <th>No</th>
+                                        <th>Product</th>
+                                        <th>Customer</th>
+                                        <th>Qty</th>
+                                        <th>Discount</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($categories as $row)
+                                    @forelse ($payments as $payment)
                                         <tr>
-                                            <td>
-                                                <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                    <input type="checkbox" class="form-check-input" id="customCheckBox2"
-                                                        required="">
-                                                    <label class="form-check-label" for="customCheckBox2"></label>
-                                                </div>
-                                            </td>
-                                            <td><strong>{{ $loop->iteration }}</strong></td>
-                                            <td>{{ $row->name }} </td>
-                                            <td>{{ $row->created_at }}</td>
-                                            <td>{{ $row->updated_at }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $payment->product->name }}</td>
+                                            <td>{{ $payment->user->name }}</td>
+                                            <td>{{ $payment->qty }}</td>
+                                            <td>{{ $payment->discount ?? '-' }}</td>
+                                            <td>Rp. {{ number_format($payment->total, 0, ',', '.') }}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{ route('categories.edit', $row->id) }}"
-                                                        class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                            class="fas fa-pencil-alt"></i></a>
                                                     <button type="button" class="btn btn-danger shadow btn-xs sharp"
-                                                        data-bs-toggle="modal" data-bs-target="#modalDeleteCategories"><i
+                                                        data-bs-toggle="modal" data-bs-target="#modalDeleteProducts"><i
                                                             class="fa fa-trash"></i></button>
-                                                    <div class="modal fade" id="modalDeleteCategories">
+                                                    <div class="modal fade" id="modalDeleteProducts">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -71,14 +54,13 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <p>Are you sure you want to delete this
-                                                                        <strong>( {{ $row->name }} )</strong> ?
+                                                                        <strong>( {{ $payment->product->name }} )</strong> ?
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-primary light"
                                                                         data-bs-dismiss="modal">Close</button>
-                                                                    <form
-                                                                        action="{{ route('categories.delete', $row->id) }}"
+                                                                    <form action="{{ route('order.delete', $payment->id) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -94,9 +76,11 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td class="text-center" colspan="5">No Data Available.</td>
+                                            <td colspan="8" class="text-center">No products found</td>
                                         </tr>
                                     @endforelse
+
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

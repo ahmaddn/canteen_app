@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\ForgotPasswordController;
 use App\Http\Controllers\auth\RegisteredUserController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/products/{id}', [ProductsController::class, 'edit'])->name('products.edit');
     Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
     Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('products.delete');
+
+    //Orders
+    Route::get('/orders', [OrderController::class, 'orders'])->name('orders.index');
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 
     // Detail Products / Order
     Route::get('/products/{id}/detail', [ProductsController::class, 'detail'])->name('products.detail');

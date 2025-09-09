@@ -6,5 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payments extends Model
 {
-    //
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'total',
+        'payment_method',
+        'discount',
+        'qty',
+        'created_at',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public $timestamps = false;
 }

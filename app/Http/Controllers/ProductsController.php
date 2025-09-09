@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attachments;
 use App\Models\Categories;
+use App\Models\Payments;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -145,5 +146,28 @@ class ProductsController extends Controller
     {
         $product = Products::with('category', 'attachments')->findOrFail($id);
         return view('products.detail', compact('product'));
+    }
+
+    public function order(Request $request, $id)
+    {
+        $request->validate([
+            'payment' => 'required|in:cash,transfer,qris',
+            'qty' => 'required|integer|min:1',
+        ]);
+
+        // Logic to process the order would go here
+        $products = Products::findOrFail($id);
+        $products->stock -= $request->qty;
+        $products->save();
+        Payments::create([
+            'user_id' => Auth::id(),
+            'product_id' => $products->id,
+            'total' => $products->price * $request->qty,
+            'payment_method' => $request->payment,
+            'qty' => $request->qty,
+            'created_at' => now(),
+        ]);
+
+        return redirect()->route('products.detail', $id)->with('success', 'Order placed successfully!');
     }
 }

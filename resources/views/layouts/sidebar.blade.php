@@ -20,6 +20,11 @@
                     <li><a href="{{ route('products.add') }}">Add</a></li>
                 </ul>
             </li>
+            <li><a href="{{ route('orders.index') }}" class="" aria-expanded="false">
+                    <i class="fas fa-cart-arrow-down"></i>
+                    <span class="nav-text">Orders</span>
+                </a>
+            </li>
         </ul>
         <div class="copyright">
             <p><strong>Labantik</strong> © 2025 All Rights Reserved</p>
